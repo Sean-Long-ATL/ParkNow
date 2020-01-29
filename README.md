@@ -2,7 +2,7 @@
 Software engineering parking application repository
 
 
-**Team members:
+Team members:
 
 - Sean Long 
 - Matthew Forrest
