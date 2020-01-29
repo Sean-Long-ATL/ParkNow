@@ -1,6 +1,6 @@
 # ParkNow
 Software engineering parking application repository
-Team members:
+Team members: \n
   Sean Long 
   Matthew Forrest
   Zijun Chai
