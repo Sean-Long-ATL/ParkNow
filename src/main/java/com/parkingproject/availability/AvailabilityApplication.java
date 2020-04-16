@@ -27,14 +27,14 @@ public class AvailabilityApplication
         SpringApplication.run(AvailabilityApplication.class, args);
     }
 
-    /*@Bean
+    @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/decklist/{id}").allowedOrigins("http://localhost:9000");
+                registry.addMapping("/").allowedOrigins("http://localhost:4200");
             }
         };
-    }*/
+    }
 
 }

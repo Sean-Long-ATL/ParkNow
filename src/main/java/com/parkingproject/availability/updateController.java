@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/update")
 public class updateController
 {

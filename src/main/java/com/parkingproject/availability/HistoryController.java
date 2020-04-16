@@ -6,9 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.*;
 
 @Component
 public class HistoryController
@@ -22,17 +21,20 @@ public class HistoryController
     @Scheduled(cron = "0 */15 * * * *")
     public void updateHistory()
     {
+        Calendar c = Calendar.getInstance();
+        c.setTimeZone(TimeZone.getTimeZone("UTC"));
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
         Iterable<deck> dlist = deckRepository.findAll();
         for(deck d: dlist)
         {
-            addHistory(d.getId());
+            addHistory(d.getId(), dayOfWeek, hour);
         }
-        //addHistory(1);
     }
 
     //@PostMapping(path = "/add") // Map ONLY POST Requests
     public
-    String addHistory(Integer deckId)
+    String addHistory(Integer deckId, Integer dayCode, Integer hourCode)
     {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
@@ -43,15 +45,11 @@ public class HistoryController
         deckHistory n = new deckHistory();
         n.setDeckId(db_deck.getId());
         n.setSpaceLeft(db_deck.getCapacity() - db_deck.getOccupancy());
+        n.setDayCode(dayCode);
+        n.setHourCode(hourCode);
         //n.setTime()
         deckHistoryRepository.save(n);
         return "Saved";
     }
 
-    //@GetMapping(path = "/all")
-    public @ResponseBody
-    Iterable<deckHistory> getAllHistory()
-    {
-        return deckHistoryRepository.findAll();
-    }
 }

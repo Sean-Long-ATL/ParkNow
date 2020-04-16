@@ -20,6 +20,10 @@ public class deckHistory
 
     private int spaceLeft;
 
+    private Integer dayCode;
+
+    private Integer hourCode;
+
     @Basic
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
