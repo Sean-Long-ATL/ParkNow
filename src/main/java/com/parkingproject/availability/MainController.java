@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.Map;
+import java.util.Optional;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/decklist")
 public class MainController
 {
@@ -28,14 +32,14 @@ public class MainController
         return "Saved";
     }
 
-    /*@PutMapping("/decklist/edit/{id}")
-    deck updateDeck(@RequestParam deck newDeck, @PathVariable int id)
+    @PutMapping("/decklist/edit/{id}")
+    public Optional<deck> updateDeck(@RequestParam deck newDeck, @PathVariable int id)
     {
         return deckRepository.findById(id).map(deck -> {
             deck.setDeckName(newDeck.getDeckName());
             deck.setCapacity(newDeck.getCapacity());
             deck.setOccupancy(newDeck.getOccupancy()); return deckRepository.save(deck);});
-    }*/
+    }
 
     @GetMapping(path = "/{id}")
     public @ResponseBody deck getDeck(@PathVariable int id)
