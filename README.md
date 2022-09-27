@@ -1,5 +1,6 @@
 # ParkNow
-Software engineering parking application repository
+Spring application designed to maintain parking availiability for gsu parking decks and display said availaibility via webpage
+
 
 
 Team members:
